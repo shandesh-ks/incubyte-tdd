@@ -22,4 +22,12 @@ RSpec.describe StringCalculator do
     expect(calc.add("3,2,1,1")).to eq 7
     expect(calc.add("5,8,34,25,5")).to eq 77
   end
+
+  it "allows newlines between numbers" do
+    expect(calc.add("1\n2,3")).to eq 6
+    expect(calc.add("75\n5,29")).to eq 109
+    expect(calc.add("4\n5\n1")).to eq 10
+    expect(calc.add("10\n")).to eq 10
+  end
+
 end
