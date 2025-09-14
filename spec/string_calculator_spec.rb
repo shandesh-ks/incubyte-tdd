@@ -30,4 +30,10 @@ RSpec.describe StringCalculator do
     expect(calc.add("10\n")).to eq 10
   end
 
+  it "supports custom delimiter" do
+    expect(calc.add("//;\n11;2")).to eq 13
+    expect(calc.add("//|\n2|3|4")).to eq 9
+    expect(calc.add("//(\n27(3(4")).to eq 34
+  end
+
 end
