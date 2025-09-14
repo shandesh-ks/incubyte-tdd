@@ -18,4 +18,8 @@ RSpec.describe StringCalculator do
     expect(calc.add("1,17")).to eq 18
   end
 
+  it "sums 'n' number of input numbers" do
+    expect(calc.add("3,2,1,1")).to eq 7
+    expect(calc.add("5,8,34,25,5")).to eq 77
+  end
 end
