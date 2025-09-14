@@ -15,6 +15,7 @@ RSpec.describe StringCalculator do
   it "sums two comma separated numbers" do
     expect(calc.add("1,5")).to eq 6
     expect(calc.add("10,20")).to eq 30
+    expect(calc.add("1,17")).to eq 18
   end
 
 end
