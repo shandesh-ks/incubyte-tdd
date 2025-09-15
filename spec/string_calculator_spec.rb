@@ -61,4 +61,16 @@ RSpec.describe StringCalculator do
     end
   end
 
+  context "supports long custom delimiters" do
+    it "handles delimiter of any length using brackets" do
+      expect(calc.add("//[***&]\n1***&2***&3")).to eq 6
+      expect(calc.add("//[abc]\n10abc20abc30")).to eq 60
+    end
+
+    it "still supports old single-char delimiter without brackets" do
+      expect(calc.add("//;\n11;2")).to eq 13
+      expect(calc.add("//|\n2|3|4")).to eq 9
+    end
+  end
+
 end

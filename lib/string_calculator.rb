@@ -6,9 +6,18 @@ class StringCalculator
     if numbers.start_with?("//")
       delimiter_match = numbers.match(/\A\/\/(.+)\n(.*)\z/m)
       if delimiter_match
-        escaped_delimiter = Regexp.escape(delimiter_match[1])
-        delimiter_regex = Regexp.new(escaped_delimiter)
+        # escaped_delimiter = Regexp.escape(delimiter_match[1])
+        # delimiter_regex = Regexp.new(escaped_delimiter)
+        delimiter_section = delimiter_match[1]
         numbers = delimiter_match[2]
+
+        if delimiter_section.start_with?("[") && delimiter_section.end_with?("]")
+          inner = delimiter_section.match(/\A\[(.*)\]\z/m)[1]
+          delimiter_regex = Regexp.new(Regexp.escape(inner))
+        else
+          escaped_delimiter = Regexp.escape(delimiter_section)
+          delimiter_regex = Regexp.new(escaped_delimiter)
+        end
       end
     end
 
