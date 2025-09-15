@@ -13,6 +13,9 @@ class StringCalculator
     end
 
     arr_numbers = numbers.split(delimiter_regex).map(&:to_i)
+    # IGNORE numbers greater than 1000
+    arr_numbers = arr_numbers.reject { |num| num > 1000 }
+
     negatives = arr_numbers.select { |num| num < 0 }
     raise ArgumentError, "negative numbers not allowed #{negatives.join(',')}" if negatives.any?
 
