@@ -12,6 +12,10 @@ class StringCalculator
       end
     end
 
-    numbers.split(delimiter_regex).map(&:to_i).sum
+    arr_numbers = numbers.split(delimiter_regex).map(&:to_i)
+    negatives = arr_numbers.select { |num| num < 0 }
+    raise ArgumentError, "negative numbers not allowed #{negatives.join(',')}" if negatives.any?
+
+    arr_numbers.sum
   end
 end
