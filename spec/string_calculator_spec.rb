@@ -78,6 +78,11 @@ RSpec.describe StringCalculator do
       expect(calc.add("//[*][%]\n1*2%3")).to eq 6
       expect(calc.add("//[;][:]\n4;5:6")).to eq 15
     end
+
+    it "handles multiple multi-character delimiters" do
+      expect(calc.add("//[***][%%]\n1***2%%3")).to eq 6
+      expect(calc.add("//[abc][xyz]\n10xyz20abc30")).to eq 60
+    end
   end
 
 end
