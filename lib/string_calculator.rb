@@ -13,6 +13,7 @@ class StringCalculator
           delimiters = delimiter_section.scan(/\[(.*?)\]/).flatten
           delimiter_regex = Regexp.new(delimiters.map { |d| Regexp.escape(d) }.join('|'))
         else
+          delimiters = [delimiter_section]
           escaped_delimiter = Regexp.escape(delimiter_section)
           delimiter_regex = Regexp.new(escaped_delimiter)
         end
@@ -26,6 +27,10 @@ class StringCalculator
     negatives = arr_numbers.select { |num| num < 0 }
     raise ArgumentError, "negative numbers not allowed #{negatives.join(',')}" if negatives.any?
 
-    arr_numbers.sum
+    if delimiters&.include?('*')
+      arr_numbers.inject(:*)
+    else
+      arr_numbers.sum
+    end
   end
 end

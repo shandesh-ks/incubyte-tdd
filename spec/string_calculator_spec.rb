@@ -85,4 +85,12 @@ RSpec.describe StringCalculator do
     end
   end
 
+  context "handle * delimiter to multiple numbers" do
+    it "handle * delimiter to multiple numbers" do
+      expect(calc.add("//[*]\n1*2*3")).to eq 6
+      expect(calc.add("//[*]\n10*20")).to eq 200
+      expect(calc.add("//[*]\n2*3")).to eq 6
+    end
+  end
+
 end
